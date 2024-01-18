@@ -1,0 +1,304 @@
+!! Centro - Stage 6
+
+MLHR V2 - new recruit management
+- new recruit management (Compressed PULHEEMS for bulk appointment)
+- related with current PULHEEMS Modules
+-- HU management characteristic
+--- Function in slides
+--- status new recruit declaration under PULHEEMS
+--- no and prevent backdated case
+--- Total Modules = 4
+--- create new recruit Intake(Batch)
+	* do Modal
+	* no. registered === total Officer
+	* type
+		* serial Number
+		* LLP & Officer
+		* Service
+	* can upload bulk & individual
+	* have Intake_ID
+--- send to PULHEEMS and set appointment (set patient have New recruit)
+--- By Intake use accordion / else
+	* list every patient in Intake
+	* PES 1,2,3
+	* SETTLE ALL patient THEN CAN CHECK OUT BULK
+	* Have pending Function, pop patient who is completed, but Intake still cant checkout
+	* Compress data from PULHEEMS slide 8
+		* notes - others 
+		* search name and id
+		* parameter from biometric
+		* carry forward data?
+		* have save, pending, failed
+		* insert DENTAP section? DRC code auto scoring, only show YES & NO
+		* linkage with sick report (MO REMARK, DENTAL REPORT)
+--- fixed appointment HU details (save hardcoded text)
+	* HU
+	* Pangkat
+--- tab in user dashboard
+	* now insert in current main page
+--- Dental is compulsory?
+	* SIAP is not ready by system
+--- appointment exists for every patient dashboard
+--- MO REMARK NO. 17, LAIN-LAIN ABNORMALITIES
+--- No chart, only dentist REMARK and table 
+	* pass or failed
+	* override and show latest report
+--- upload BATF1 for new recruit
+--- UNFIT have reason
+	* (Modal) medical / non-medical
+--- patient can transfer between Intake(Group)
+
+------------------------------------------------------------------
+------------------------------------------------------------------
+
+Centro - Stage 6
+- sidebar
+-- every module use icon
+-- radiology
+	* infinite scroll
+-- 3 steps open
+-- design check with flowbite
+	* speed dial
+	* drawer
+-- sidebar size 1/3 
+-- show remarks on hover
+-- no picture on sidebar
+-- reveal all biometric,
+	* graph icon on filter
+	* line chart
+-- diagnosis change to bar chart
+-- binary value = no chart
+
+SIDEBAR
+1-- LAB
+	* Lab Investigation Group
+		*RP
+		*LFT
+		*FBC
+			- have filter by exam type
+			- date Range?
+			- normal range for exam type
+				* refer MLHR v1
+			- use 1 chart for all exam
+				* different reading for y-axis
+				* time base for x-axis
+			* no
+			* Date 
+			* Batch No. (Refer from LIS)
+			* Test item
+			* result
+			* info 
+				- min, max, result from LAB
+				- red and black fontcolor
+		*Glucose
+		*Urine
+			* Albumin: {
+					result:{
+						absent, -, trace, ++, +++ (Categorical)
+					}
+				}
+		*FSL
+		*others
+2-- BIOMETRIC
+	* integrate with respect?
+	* FRS Score in biometric
+		* have trend chart
+	* pay attention to scale y-axis
+	- item show on graph by grouping
+				* 1
+					* BMI
+					* weight
+					* height
+				* 2
+					*Dystolic
+					*Systolic
+				*3
+					*Waist Circumference
+				*4
+					*Pulse Rate
+				*5
+					*Body Fat
+	- action
+		* tooltip
+			* Location HU
+			* appointment type
+			* updated by (MO)
+		* click btn to navigate to the specific appointment
+3-- RADIOLOGY
+	* integrate from outside MLHR?
+		- Record saved in MLHR
+		- eg: MRI
+			* Result will show Integration: %system%
+			* read-only
+	- sort by chronology (date)
+4-- SPECIAL EXAM
+	* Audiogram
+		- date pagination
+		- canvas only
+	* Exam All no show chart
+	- Btn show chart when exam type === Audiogram
+	- action
+		* tooltip
+			* Location HU
+			* appointment type
+			* updated by (MO)
+		* click btn to navigate to the specific appointment
+5-- MEDICINE
+	- can get from HIS
+	- depends on Medication Module
+	- use Modal?
+		- search Generic Name in eForsihat
+		- selected preparation
+		- steps menu
+		- follow notification template (@items)
+		- concat Name & Preparation
+		- auto-suggest based on history of MO data?
+			- show top-5 most used and latest
+			- fuzzy search
+				- generic or trade
+					* show only Generic Name
+	* PRESCRIPTION(sub-module)
+		* No.
+		* Medication Details (Preparation, Frequency, Duration) (concat)
+			* Frequency
+				* Stat
+				* OD
+				* OM
+				* ON
+				* BD
+				* TDS
+				* QID
+				* 5x
+				* PRN
+			* Duration (days) (1-365)-> translate to 
+				- 1/7
+				- 10/7 === 10 days
+				- 1/30
+				- 1/52
+				- 1/12
+6-- ALLERGY
+	- can get from HIS
+	- declared by PT. or MO?
+		- PT. -> Health declaration
+		- MO have seperate Health declaration view, connected to PT. view
+		- MO append data from PT.
+			* PT. REMARK
+			* MO. REMARK
+		- add column in MO page (Declaration)
+			* MO. REMARK
+				- make compulsory for MO
+				- make for nutrition history data
+	- Allergy info show when have data
+	- Can (Register) append data thru sidebar && Not inside the appointment
+	*** add allergy from appointment at clinical notes
+	*** biohazard from group serology
+	- action
+		- tooltip
+			* Location (HU)
+			* appointment type (MLHR / Others). Eg: PULHEEMS (MLHR) : Others
+			* updated by (MO)
+		- click btn to navigate to the specific appointment
+7-- IMMUNIZATION
+	- filter by type
+	- validation type
+		* TAB (Red / Green) expired/valid
+			- expired === 2y
+		* ATT (Red / Green) expired/valid
+			- expired === 10y
+		* Hep-B
+	- add Immunization at patient dashboard(below DCS)
+		* rename to Vaccine (Yellow)
+	- action
+		- tooltip
+			* appointment type (MLHR / Others)
+			* Dose
+			* Batch No.
+			* Location(source)
+		- click btn to navigate to the specific appointment
+8-- SURVEY 
+	- have history, and can create survey/questionnaire.
+	- survey only can be created by admin
+	- mo can send q's to patient specific q
+	- mo can view answered q's patient
+	- link to current patient
+	- tooltip show answers
+	- action
+		- tooltip
+			* appointment type (MLHR / Others). Eg: PULHEEMS (MLHR) : Others
+			* Date
+			* Location(source === medium used by patient) Eg: Mobile/Kiosk
+			* Abnormal declaration
+			* Scores
+		- click btn to navigate to the specific appointment
+9-- DIAGNOSIS
+	- can get from HIS
+	- refer MEDICINE
+	- no chart
+	- ICD-11
+		* E11 - Diabetes Melitus Unspecified
+		* etc
+10-- HOSPITALIZATION
+	- can get from HIS 
+	- Register hospitalization
+		* notes
+			* data required?
+				* Hospital Name
+				* Date Admit / Discharge
+				* Diagnosis
+				* Remarks
+				* Treating MO
+	* Date Admit / Discharge
+	* Hospital (Location)
+	* Discharge Summary?
+	- action
+		- tooltip
+			* appointment type (MLHR / Others(HIS)). 
+			* Date
+			* Location
+		- click btn to navigate to the specific appointment
+11-- REFERRALS
+	* Create referral
+	* 2 channel
+		- hardcopy
+		- formatted referral letter (PDF)
+	* internal / external
+
+-- ADDITIONAL NOTES
+	- related to ADMS
+	- hardcoded text!
+	- patient landing page
+	- user landing page
+		- charts for Summary
+		- filter by year
+		- refer MLHR v1
+		- History and REFERRALS
+		- Sections of completed appointments
+			- refer sample from picture
+		- HUM
+			* MO
+				-appointment date range
+				-Summary for completed appointment?
+				-if user change HU, save data for each user.
+			* Paramedic
+				-created by?
+	- Formation data? 106unit of HU
+		- Role clinical & admin
+		- type of HU
+			-not all ppat is clinical
+			-not all markas can make appointment?
+		- some HU can not have appointment
+			- can lock for make appointment for HU
+		- permission level HU for any action/activity
+		- Performance for formation
+		- 801, 711, etc
+	- Based on level of user/hu/formation summary
+-- APPOINTMENT REPORTING
+	-replace column readiness === filter by PULHEEMS&SOP only
+	-add column HU === filter by ALL
+		* MU(Military Unit) have 1 HU?
+		* 1 HU can control many MU?
+			- then can produce readiness report in BULK
+-- PRINTING?
+	-- RPKT PULHEEMS (BATF2 summary)
+	-- BATF523
+	-- BATF1
