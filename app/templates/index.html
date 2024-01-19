@@ -5,15 +5,25 @@
     <title>Kama</title>
 </head>
 
-<body>
-    <div style="width: 50%;margin: 0 auto;border: 1px solid grey;border-radius: 10px;">
-        <h2 style="margin: 0 auto;background-color:blanchedalmond;width: fit-content;">
+<body style="background-color: rgb(234, 255, 203);">
+    <div
+        style="height: 300px;width: 50%;margin: 0 auto;border: 1px solid rgb(185, 184, 184);border-radius: 10px;background-color: whitesmoke;border: none;box-shadow: 5px 5px 4px grey;">
+        <h2 style="padding: 20px;margin: 0 auto;width: fit-content;">
             Blood Disease Classification Using Image Processing and CNN
         </h2>
 
-        <form style="margin: 0 auto;background-color: aqua;width: 50%;" method=post enctype=multipart/form-data>
-            <input type=file name=file>
-            <input type=submit value=Upload>
+        <form style="padding: 20px;text-align: center;" methodpost enctype=multipart/form-data>
+            <div style="margin: 0 auto;width: fit-content;">
+                <div style="text-align: left;padding-bottom: 5px;">
+                    <label for="image-blood-cell">Upload blood cell image:</label>
+                </div>
+                <div>
+                    <input id="image-blood-cell" type=file name=file
+                        style="border: 1px solid lightgray;border-radius: 5px;padding: 5px;width: 500px;">
+                    <input type=submit value=Upload
+                        style="padding: 7px; background-color: aquamarine;border: none;border-radius: 5px;cursor: pointer;">
+                </div>
+            </div>
         </form>
     </div>
     <!-- <ul id="navigation">
